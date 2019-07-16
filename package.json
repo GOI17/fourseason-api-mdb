@@ -1,0 +1,19 @@
+{
+  "name": "fourseason-backend",
+  "version": "1.0.0",
+  "description": "Backend with mongodb of the fourseason project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GOI17/backend2.git"
+  },
+  "author": "Gilberto Olivas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GOI17/backend2/issues"
+  },
+  "homepage": "https://github.com/GOI17/backend2#readme"
+}
