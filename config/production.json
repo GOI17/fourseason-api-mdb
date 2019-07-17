@@ -1,0 +1,6 @@
+{
+    "name": "Fourseason Project - Production",
+    "mail": {
+        "host": "prod-mail-server"
+    }
+}
