@@ -1,7 +1,7 @@
 const express = require('express');
 const station = require('../routes/station');
 const sensor = require('../routes/sensor');
-const reading = require('../routes/reading');
+// const reading = require('../routes/reading');
 const users = require('../routes/users');
 const auth = require('../routes/auth');
 const error = require('../middleware/error');
