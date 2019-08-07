@@ -1,6 +1,6 @@
 {
     "jwtPrivateKey": "unsecureKey",
     "db": "mongodb://localhost/fourseason",
-    "port": "3900",
+    "port": "3000",
     "requiresAuth": true
 }
