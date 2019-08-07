@@ -1,4 +1,4 @@
 {
     "jwtPrivateKey": "fourseason_jwtPrivateKey",
-    "db": "fourseasonDB"
+    "db": "fourseason_db"
 }
