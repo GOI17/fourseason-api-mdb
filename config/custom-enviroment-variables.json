@@ -1,4 +1,5 @@
 {
     "jwtPrivateKey": "fourseason_jwtPrivateKey",
-    "db": "fourseason_db"
+    "local_db": "mongodb://localhost:27017/fourseason",
+    "cloud_db": "mongodb+srv://gilberto-dev:alonso1725@fourseasondb-kgqqa.mongodb.net/test?retryWrites=true&w=majority"
 }
