@@ -1,4 +1,4 @@
 {
   "jwtPrivateKey": "1234",
-  "db": "fourseason_db"
+  "db": "mongodb://localhost:27017/"
 }
