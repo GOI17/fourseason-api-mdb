@@ -1,4 +1,4 @@
-const { Reading, validate } = require("../models/sensor");
+const { Reading, validate } = require("../models/reading");
 const { Station } = require("../models/station");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
@@ -9,7 +9,9 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const readings = await Reading.find().select("-__v");
+  const readings = await Reading.find()
+    .select("-__v")
+    .sort("date");
   res.send(readings);
 });
 
