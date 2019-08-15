@@ -9,9 +9,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const readings = await Reading.find()
-    .select("-__v")
-    .sort("date");
+  const readings = await Reading.find().select("-__v");
   res.send(readings);
 });
 
