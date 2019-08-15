@@ -19,7 +19,7 @@ router.post("/", [auth], async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const sensor = await Sensor.findById(req.body.sensors._id);
+  const sensor = await Sensor.findById(req.body.sensor);
   if (!sensor) return res.status(400).send("Invalid sensor.");
 
   const station = new Station({
@@ -27,6 +27,7 @@ router.post("/", [auth], async (req, res) => {
     ipAddress: req.body.ipAddress,
     sensor: {
       _id: sensor._id,
+      model: sensor.model,
       description: sensor.description
     },
     creationDate: moment().toJSON()

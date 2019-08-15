@@ -1,6 +1,6 @@
 const Joi = require("@hapi/joi");
 const mongoose = require("mongoose");
-const { sensorSchema } = require("./sensor");
+const { sensorSchema, validate } = require("./sensor");
 
 const stationSchema = new mongoose.Schema({
   description: {
@@ -12,7 +12,7 @@ const stationSchema = new mongoose.Schema({
     required: true,
     maxlength: 12
   },
-  sensors: {
+  sensor: {
     type: sensorSchema,
     required: true
   }
@@ -23,10 +23,10 @@ const Station = mongoose.model("Station", stationSchema);
 function validateStation(station) {
   const schema = {
     description: Joi.string().required(),
-    sensorId: Joi.objectId().required(),
-    ipAddress: Joi.number()
+    ipAddress: Joi.string()
       .max(12)
-      .required()
+      .required(),
+    sensor: Joi.objectId()
   };
 
   return Joi.validate(station, schema);
