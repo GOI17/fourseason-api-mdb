@@ -17,16 +17,17 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
+  console.log(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   const reading = new Reading({
-    station: {
-      _id: req.body.station._id
+    station: req.body.station,
+    values: {
+      temperature: req.body.values.temperature,
+      dust: req.body.values.dust,
+      windQuality: req.body.values.windQuality,
+      humidity: req.body.values.humidity
     },
-    temperature: req.body.temperature,
-    dust: req.body.dust,
-    windQuality: req.body.windQuality,
-    humidity: req.body.humidity,
     creationDate: moment().toJSON()
   });
   await reading.save();
