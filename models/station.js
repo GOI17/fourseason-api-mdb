@@ -23,8 +23,10 @@ const Station = mongoose.model("Station", stationSchema);
 function validateStation(station) {
   const schema = {
     description: Joi.string().required(),
-    sensorId: Joi.objectId().required(),
-    ipAddress: Joi.number()
+    sensors: {
+      _id: Joi.objectId().required()
+    },
+    ipAddress: Joi.string()
       .max(12)
       .required()
   };
