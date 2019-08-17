@@ -1,10 +1,8 @@
 const { Station, validate } = require("../models/station");
-const { Sensor } = require("../models/sensor");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 const validateObjectId = require("../middleware/validateObjectId");
 const moment = require("moment");
-const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
@@ -19,17 +17,13 @@ router.post("/", [auth], async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const sensor = await Sensor.findById(req.body.sensor);
-  if (!sensor) return res.status(400).send("Invalid sensor.");
+  var station = await Station.findOne({ ipAddress: req.body.ipAddress });
+  if (station) return res.status(400).send("The Ip Address is already in use.");
 
-  const station = new Station({
+  station = new Station({
     description: req.body.description,
     ipAddress: req.body.ipAddress,
-    sensor: {
-      _id: sensor._id,
-      model: sensor.model,
-      description: sensor.description
-    },
+    sensors: req.body.sensors,
     creationDate: moment().toJSON()
   });
   await station.save();
@@ -41,18 +35,15 @@ router.put("/:id", [auth], async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const sensor = await Sensor.findById(req.body.sensorId);
-  if (!sensor) return res.status(400).send("Invalid sensor.");
+  var station = await Station.findOne({ ipAddress: req.body.ipAddress });
+  if (station) return res.status(400).send("The Ip Address is already in use.");
 
-  const station = await Movie.findByIdAndUpdate(
+  station = await Station.findByIdAndUpdate(
     req.params.id,
     {
       description: req.body.description,
       ipAddress: req.body.ipAddress,
-      sensor: {
-        _id: sensor._id,
-        description: sensor.name
-      }
+      sensors: req.body.sensors
     },
     { new: true }
   );
