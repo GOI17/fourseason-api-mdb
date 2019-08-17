@@ -4,7 +4,6 @@ const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 const validateObjectId = require("../middleware/validateObjectId");
 const moment = require("moment");
-const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
@@ -17,11 +16,14 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
-  console.log(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
+  const station = await Station.findById(req.body.stationId);
+  if (!station)
+    return res.status(400).send("The station with the given ID was not found.");
+
   const reading = new Reading({
-    station: req.body.station,
+    station: station,
     values: {
       temperature: req.body.values.temperature,
       dust: req.body.values.dust,
@@ -30,6 +32,7 @@ router.post("/", async (req, res) => {
     },
     creationDate: moment().toJSON()
   });
+
   await reading.save();
 
   res.send(reading);

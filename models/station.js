@@ -1,22 +1,27 @@
 const Joi = require("@hapi/joi");
 const mongoose = require("mongoose");
-const { sensorSchema, validate } = require("./sensor");
+const { sensorSchema } = require("./sensor");
 
-const stationSchema = new mongoose.Schema({
-  description: {
-    type: String,
-    required: true
+const stationSchema = new mongoose.Schema(
+  {
+    description: {
+      type: String,
+      required: true
+    },
+    ipAddress: {
+      type: String,
+      required: true,
+      maxlength: 12
+    },
+    sensors: [
+      {
+        type: sensorSchema,
+        required: true
+      }
+    ]
   },
-  ipAddress: {
-    type: String,
-    required: true,
-    maxlength: 12
-  },
-  sensor: {
-    type: sensorSchema,
-    required: true
-  }
-});
+  { strict: true }
+);
 
 const Station = mongoose.model("Station", stationSchema);
 
@@ -26,7 +31,16 @@ function validateStation(station) {
     ipAddress: Joi.string()
       .max(12)
       .required(),
-    sensor: Joi.objectId()
+    sensors: Joi.array()
+      .min(1)
+      .items(
+        Joi.object({
+          _id: Joi.objectId().required(),
+          description: Joi.string().required(),
+          model: Joi.string().required()
+        })
+      )
+      .required()
   };
 
   return Joi.validate(station, schema);
