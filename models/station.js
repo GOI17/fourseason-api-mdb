@@ -11,7 +11,7 @@ const stationSchema = new mongoose.Schema(
     ipAddress: {
       type: String,
       required: true,
-      maxlength: 12
+      maxlength: 15
     },
     sensors: [
       {
