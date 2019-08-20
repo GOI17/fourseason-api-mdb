@@ -12,9 +12,9 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const readings = await Reading.find({
-    station: { _id: req.params.id }
-  }).select("-__v");
+  const readings = await Reading.find({ "station._id": req.params.id }).select(
+    "-__v"
+  );
 
   if (!readings)
     return res
