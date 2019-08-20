@@ -12,19 +12,19 @@ const Reading = mongoose.model(
       },
       values: {
         temperature: {
-          type: String,
+          type: Number,
           required: true
         },
         humidity: {
-          type: String,
+          type: Number,
           required: true
         },
         windQuality: {
-          type: String,
+          type: Number,
           required: true
         },
         dust: {
-          type: String,
+          type: Number,
           required: true
         }
       }
@@ -37,10 +37,10 @@ function validateReading(reading) {
   const schema = {
     stationId: Joi.objectId().required(),
     values: Joi.object({
-      temperature: Joi.string().required(),
-      humidity: Joi.string().required(),
-      windQuality: Joi.string().required(),
-      dust: Joi.string().required()
+      temperature: Joi.number().required(),
+      humidity: Joi.number().required(),
+      windQuality: Joi.number().required(),
+      dust: Joi.number().required()
     }).required()
   };
 
