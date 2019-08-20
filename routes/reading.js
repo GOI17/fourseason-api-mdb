@@ -12,9 +12,15 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const readings = await Reading.findById(req.params.id)
-    .select("-__v")
-    .sort("date");
+  const readings = await Reading.find({
+    station: { _id: req.params.id }
+  }).select("-__v");
+
+  if (!readings)
+    return res
+      .status(404)
+      .send("The station with the given ID does not have readings.");
+
   res.send(readings);
 });
 
