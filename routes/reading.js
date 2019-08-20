@@ -35,10 +35,10 @@ router.post("/", async (req, res) => {
   const reading = new Reading({
     station: station,
     values: {
-      temperature: req.body.values.temperature,
-      dust: req.body.values.dust,
-      windQuality: req.body.values.windQuality,
-      humidity: req.body.values.humidity
+      temperature: req.body.values.t,
+      dust: req.body.values.d,
+      windQuality: req.body.values.w,
+      humidity: req.body.values.h
     },
     creationDate: moment().toJSON()
   });
