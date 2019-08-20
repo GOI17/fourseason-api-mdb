@@ -37,10 +37,10 @@ function validateReading(reading) {
   const schema = {
     stationId: Joi.objectId().required(),
     values: Joi.object({
-      temperature: Joi.number().required(),
-      humidity: Joi.number().required(),
-      windQuality: Joi.number().required(),
-      dust: Joi.number().required()
+      t: Joi.number().required(),
+      h: Joi.number().required(),
+      w: Joi.number().required(),
+      d: Joi.number().required()
     }).required()
   };
 
