@@ -27,6 +27,10 @@ const Reading = mongoose.model(
           type: Number,
           required: true
         }
+      },
+      creationDate: {
+        type: String,
+        required: true
       }
     },
     { strict: true }
