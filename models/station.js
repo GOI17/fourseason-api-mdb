@@ -29,7 +29,7 @@ function validateStation(station) {
   const schema = {
     description: Joi.string().required(),
     ipAddress: Joi.string()
-      .max(12)
+      .max(15)
       .required(),
     sensors: Joi.array()
       .min(1)
