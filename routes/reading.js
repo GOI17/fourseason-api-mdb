@@ -32,6 +32,8 @@ router.post("/", async (req, res) => {
   if (!station)
     return res.status(400).send("The station with the given ID was not found.");
 
+  const date = new Date();
+
   const reading = new Reading({
     station: station,
     values: {
@@ -40,7 +42,8 @@ router.post("/", async (req, res) => {
       windQuality: req.body.values.w,
       humidity: req.body.values.h
     },
-    creationDate: moment().toJSON()
+    creationDate: `${date.getFullYear()}-${date.getMonth() +
+      1}-${date.getDate()}`
   });
 
   await reading.save();
