@@ -1,4 +1,4 @@
-const { Reading, validate } = require("../models/reading");
+const { Reading, validate, currentDate } = require("../models/reading");
 const { Station } = require("../models/station");
 const moment = require("moment");
 const express = require("express");
@@ -42,8 +42,7 @@ router.post("/", async (req, res) => {
       windQuality: req.body.values.w,
       humidity: req.body.values.h
     },
-    creationDate: `${date.getFullYear()}-${date.getMonth() +
-      1}-${date.getDate()}`
+    creationDate: currentDate()
   });
 
   await reading.save();
