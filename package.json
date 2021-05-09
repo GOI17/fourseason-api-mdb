@@ -29,7 +29,7 @@
     "jsonwebtoken": "^8.1.1",
     "lodash": "^4.17.10",
     "moment": "^2.20.1",
-    "mongoose": "^5.0.2",
+    "mongoose": "^5.7.5",
     "winston": "^3.2.1",
     "winston-mongodb": "^5.0.0"
   },
