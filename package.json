@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/GOI17/backend2#readme",
   "dependencies": {
-    "@hapi/joi": "^15.1.0",
+    "@hapi/joi": "^15.1.1",
     "bcrypt": "^3.0.6",
     "config": "^1.31.0",
     "cors": "^2.8.4",
