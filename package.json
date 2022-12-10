@@ -22,7 +22,7 @@
     "bcrypt": "^3.0.6",
     "config": "^1.31.0",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "express-async-errors": "^2.1.2",
     "fawn": "^2.1.5",
     "joi-objectid": "^2.0.0",
